@@ -1,0 +1,326 @@
+{
+  "format_version": 1,
+  "scope": "Original project code, tests, documentation and synthetic fixtures under MIT; no business data.",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 344,
+      "sha256": "4265805eecfaaae602d444a793a9b9b714f109ad6f4457020968665b1553d9f1"
+    },
+    {
+      "path": "Abrir demo.command",
+      "bytes": 74,
+      "sha256": "e803f8ba9f3d38b1bc9f8e1a10e92334f782f8dcffd9d28b78d3fcb521d2b2c5"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "bytes": 2183,
+      "sha256": "3813c4b4fad53a2e20791f6ca4e0a1876f70cd3cc4d539f65eb7b33fa16f7079"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1075,
+      "sha256": "c50fc586dcd204bd5563697707d1c134a0e5fa2c9868d1e5f3bcf6c22a39cf5c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5329,
+      "sha256": "d6c496a4270700ec99ad1062ef7987ae9e60a769fed987dda536dcc5246ed29a"
+    },
+    {
+      "path": "ROADMAP.md",
+      "bytes": 3449,
+      "sha256": "a9f30d63f67f975c89d896be38c438021a2d4342d4784b99cbc19729ce4a4559"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 1991,
+      "sha256": "199242297871653417fe58868bf9aa2494ed5bc1b6a45d6bd72116023ff84b22"
+    },
+    {
+      "path": "VERIFICATION.md",
+      "bytes": 3881,
+      "sha256": "ff28975a20bae9b9ba146d346eae6591b7ded01c1aa0e7ae40919665f34e7415"
+    },
+    {
+      "path": "agenda-app.js",
+      "bytes": 6637,
+      "sha256": "5742b5c03c1fc7673d2389cafd0abce2df40632d7ca019803e2772b4ec8e0d30"
+    },
+    {
+      "path": "agenda-tests.html",
+      "bytes": 792,
+      "sha256": "8068f704c5e62016ff5a60c63d8e008695a32933762acd9ec3a082ec40a0a186"
+    },
+    {
+      "path": "agenda-tests.js",
+      "bytes": 9293,
+      "sha256": "bc4508cd09d9f5bfbabd04a9c3a7716737073c5456309317b03cddb648b94952"
+    },
+    {
+      "path": "agenda-ui-tests.html",
+      "bytes": 858,
+      "sha256": "e2a1e5cb121ec452d52a77247c84416ed7e84eed5e865a0cfe12a5dc7c902114"
+    },
+    {
+      "path": "agenda-ui-tests.js",
+      "bytes": 10935,
+      "sha256": "5d45bcb6384d9aa80eef1b246edc9da529dc33a2d1d71d0d9812a6ede4f4561f"
+    },
+    {
+      "path": "agenda.css",
+      "bytes": 1054,
+      "sha256": "ec3bbd0935674c37def795bdec4504439383bbb18de4b35dae129c408138a260"
+    },
+    {
+      "path": "agendamientos.html",
+      "bytes": 6528,
+      "sha256": "c78316d573c7e2b95f9f853edbb700c283b10c7733a02f6cb2b02789a7915645"
+    },
+    {
+      "path": "agendamientos.js",
+      "bytes": 7112,
+      "sha256": "4e3722e1a756e1ade2adc260d77eb76794d75213b88d742e8b990c8c9ebcd99c"
+    },
+    {
+      "path": "app.js",
+      "bytes": 7924,
+      "sha256": "ff387dbd16b959d7fff24ca2c84a5c667cbb000b8ccee9f5acb07ea5f72100c8"
+    },
+    {
+      "path": "cotizaciones-app.js",
+      "bytes": 6206,
+      "sha256": "59bd6a1171ae75fe41fb670fa4ca7ac05aa8cd0aa4526ad28a3f2f8c4a92d4c9"
+    },
+    {
+      "path": "cotizaciones-tests.html",
+      "bytes": 777,
+      "sha256": "6ff8e81273a869acfa048ac0eb188f9f0e6414b7fea11365be677852ab078dc3"
+    },
+    {
+      "path": "cotizaciones-tests.js",
+      "bytes": 8237,
+      "sha256": "c9fef80cd3aeed501317fc9fb04270f46aff78d524fa7f6c6256741f7be585b3"
+    },
+    {
+      "path": "cotizaciones-ui-tests.html",
+      "bytes": 846,
+      "sha256": "b4808256a810b35961c0f8c8f2d7ece84edb07e8a2606d1c4296ac98cbf8ed28"
+    },
+    {
+      "path": "cotizaciones-ui-tests.js",
+      "bytes": 9147,
+      "sha256": "d211182425353f241c333e27664e17c843406a99e8e7c20a7626a163f7495b1f"
+    },
+    {
+      "path": "cotizaciones.css",
+      "bytes": 1161,
+      "sha256": "ea53cf00d76f5da5817e52384746eeb7f5dcf2f56970fb9ee7eb8f21041f0bcb"
+    },
+    {
+      "path": "cotizaciones.html",
+      "bytes": 7093,
+      "sha256": "f1d1b9fa714a9f642c29427aa9e4058080caba99f5c3a8bc959e839bf24fdec6"
+    },
+    {
+      "path": "cotizaciones.js",
+      "bytes": 4886,
+      "sha256": "d9018e37ba0f90cd05435d572c0704be3620d4c52af0767779fd3b346604f759"
+    },
+    {
+      "path": "csv.js",
+      "bytes": 5611,
+      "sha256": "cc20b7401a214701cd89d76c0bc7c2fe78ff4d1fbb7ed6d2562287a852eb5099"
+    },
+    {
+      "path": "docs/AGENDAMIENTOS.md",
+      "bytes": 4592,
+      "sha256": "0878fb4cac48eac067edca60b302570059f24c45eb77d1c05013524b15caa70b"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "bytes": 5919,
+      "sha256": "28ba78cad98f05ef8ba801ba01ea9867f8129ba7682aa459274d66076a5d40b9"
+    },
+    {
+      "path": "docs/COTIZACIONES.md",
+      "bytes": 3593,
+      "sha256": "c1d72a0e40ce25eb2dbfd41c482579d38c0ba74dcee12511010a42e440a5fd1b"
+    },
+    {
+      "path": "docs/KPIS.md",
+      "bytes": 3816,
+      "sha256": "2b4f7760c1fb3d6c415bbafd031c8c66d073cb5bb94ff4312fc93e3ffa8e4c7c"
+    },
+    {
+      "path": "docs/PACKAGE_REVIEW.md",
+      "bytes": 2119,
+      "sha256": "fb22db989e4e5739b8eaf1cce1801ad116388acc1522bd6a0238493ab16cdea0"
+    },
+    {
+      "path": "docs/PRIVACY.md",
+      "bytes": 4549,
+      "sha256": "4a25961d5d7ed092578e042f9cd0e031e9dda25ff3e44553a6639722d6d55721"
+    },
+    {
+      "path": "docs/USAGE.md",
+      "bytes": 5295,
+      "sha256": "4aee3aa33ec9dc8efbc01411bba8d348113c0a47fd89de0b6471121b606dec04"
+    },
+    {
+      "path": "docs/VENTAS.md",
+      "bytes": 3481,
+      "sha256": "87ff76fe87a9a1c412a4acb49ef2709f1389d1478cc84bb59e691d6c8ecb0cdb"
+    },
+    {
+      "path": "examples/agendamientos-ficticios.csv",
+      "bytes": 307,
+      "sha256": "b44ba257b46912db1bcc680792a3ce3d396659ce71bd982c8ec87190ee3b38ac"
+    },
+    {
+      "path": "examples/cotizaciones-ficticias.csv",
+      "bytes": 134,
+      "sha256": "2efa6dbc44f8b2152ca2bcdad0df330a48c391dba1d280e8205844f8e28b1f1c"
+    },
+    {
+      "path": "examples/nps-ficticio.csv",
+      "bytes": 130,
+      "sha256": "6def592091ce9b44e45e936fb7e10418441883f5cf92898d17971455e8866bd2"
+    },
+    {
+      "path": "examples/ventas-ficticias.csv",
+      "bytes": 83,
+      "sha256": "353c49925f0c3d67105a43831c823afa06521e7865ba8f91247d949f8da62a86"
+    },
+    {
+      "path": "home.css",
+      "bytes": 964,
+      "sha256": "7237b30bb4714928294ab68dac89b139bbc78ba0619dab50ebc7b4edb3374b21"
+    },
+    {
+      "path": "home.html",
+      "bytes": 4831,
+      "sha256": "5d502266441c2b2286c3f4c6cc4f5518fbff17676afcf670e883993f3d7ec161"
+    },
+    {
+      "path": "index.html",
+      "bytes": 6704,
+      "sha256": "17bd4e01ce7a1124374586e6c3e8a0d4a67dce5084777e61bfc0bd221c89b59d"
+    },
+    {
+      "path": "integration-tests.html",
+      "bytes": 885,
+      "sha256": "c4e534ef5a8b02083cfa2e37003fad234f79f17b70e6dfdc0576b2b626dd352b"
+    },
+    {
+      "path": "integration-tests.js",
+      "bytes": 8903,
+      "sha256": "3cfd34e7dd9b21a4c15f2a0d12f6a0262c815d1baee800a978210fd34d2d27d5"
+    },
+    {
+      "path": "navigation.css",
+      "bytes": 659,
+      "sha256": "7ead1835829b1e223fba2e13fdcc4cfd5fbd995742559be2f8408dc7c91b90dd"
+    },
+    {
+      "path": "nps-tests.js",
+      "bytes": 11506,
+      "sha256": "3e46ca5923a36db21c98a7dfb1671d31b07325dce9e0d136a19f57fb2acbb731"
+    },
+    {
+      "path": "nps.js",
+      "bytes": 7662,
+      "sha256": "5f9d2b2dad9e81402031d5527d255dafae6993a20d77acbecb022bf5647ad436"
+    },
+    {
+      "path": "package-files.txt",
+      "bytes": 1159,
+      "sha256": "feada547c655f3a53a73f06db5b164bb2360635685eb25773e328c4b2bc1ca94"
+    },
+    {
+      "path": "regression.html",
+      "bytes": 863,
+      "sha256": "c9e2324696fbdd74d68ff8e6abc13b4ac7e7bb8e907189a4486c411ec220715a"
+    },
+    {
+      "path": "regression.js",
+      "bytes": 1279,
+      "sha256": "f8f6cdc793e765292fc53ab239f9d0b9adea9f766ea5f897838dd6478637beb8"
+    },
+    {
+      "path": "serve_demo.py",
+      "bytes": 1876,
+      "sha256": "eb402820d456128d0c0ccaf402ce735e48c5b598891bb00088ee138469f86947"
+    },
+    {
+      "path": "styles.css",
+      "bytes": 13740,
+      "sha256": "312f3a702f5c087ffce837dd1788dfa3a62d81e2c35ad94461cc042daf882abc"
+    },
+    {
+      "path": "tests.html",
+      "bytes": 965,
+      "sha256": "aac2567205dff7d212db926d4f3b70b7c84be47ddcbd06e1e38d1465edf04358"
+    },
+    {
+      "path": "tests.js",
+      "bytes": 7084,
+      "sha256": "6c5841fe1877802e0b7d69eea95bbbbe8d79ac02dc989d3973bc4e2b63072467"
+    },
+    {
+      "path": "tools/prepare_package.py",
+      "bytes": 3734,
+      "sha256": "540075bbe8e46c31b7efeaf660f55b26171476da75fda86bcf481b624b17e45f"
+    },
+    {
+      "path": "ui-tests.html",
+      "bytes": 982,
+      "sha256": "e4326d7436c7f9da79e05ba2e7a0405a6d07869bfbde4f5c021880293fc17ea4"
+    },
+    {
+      "path": "ui-tests.js",
+      "bytes": 11036,
+      "sha256": "d10c37d101d2a0a1a7e0a7992598530e13d8c88efcb47dfc814595f05f8aa45c"
+    },
+    {
+      "path": "ventas-app.js",
+      "bytes": 6564,
+      "sha256": "aa2e8b19e57f593d59cd167b090892d320e06564de195e7492e73ca4f3726f25"
+    },
+    {
+      "path": "ventas-tests.html",
+      "bytes": 751,
+      "sha256": "ac694ecfaf8621427d4cc02d3bb8eabba14b142ea76768a65609fab95172cb4d"
+    },
+    {
+      "path": "ventas-tests.js",
+      "bytes": 7309,
+      "sha256": "7736d6436b37ae48e5c08176dd1ff6a0f110b658aba5b834b507be1b751deddc"
+    },
+    {
+      "path": "ventas-ui-tests.html",
+      "bytes": 814,
+      "sha256": "e5f77be44a086bdb87d3b36d75174994c9f7aed17e6365346948e987e1785a06"
+    },
+    {
+      "path": "ventas-ui-tests.js",
+      "bytes": 8460,
+      "sha256": "08043e873289fddbe3edd5a006588a52304636273b9a41c93fc8f6d8294c024a"
+    },
+    {
+      "path": "ventas.css",
+      "bytes": 791,
+      "sha256": "ddea70a5be4b724f48e40bd3f81ef3c8ca86c6084ef8147909fbb9eddb0745b3"
+    },
+    {
+      "path": "ventas.html",
+      "bytes": 6091,
+      "sha256": "5615d693aba4fcc19d90ed59376d8b17fc345d8fa367692e302f40cc6f9ac20a"
+    },
+    {
+      "path": "ventas.js",
+      "bytes": 4019,
+      "sha256": "51f9a53829145f0c47e5eb5a7439f4ee9f8f24ee7401f3c8409ed8a255b99084"
+    }
+  ]
+}

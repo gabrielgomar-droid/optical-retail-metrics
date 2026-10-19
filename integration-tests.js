@@ -1,0 +1,44 @@
+(async function () {
+  'use strict';
+  const frame = document.getElementById('app'), results = [];
+  const pages = ['home.html','index.html','agendamientos.html','ventas.html','cotizaciones.html'];
+  const configs = [
+    {page:'index.html',label:'NPS',app:'NPSApp',lib:'NPS',expected:'34,4|180|3'},
+    {page:'agendamientos.html',label:'Agendas',app:'AgendaApp',lib:'Agenda',expected:'200'},
+    {page:'ventas.html',label:'Ventas',app:'SalesApp',lib:'Sales',expected:'2025'},
+    {page:'cotizaciones.html',label:'Cotizaciones',app:'QuotesApp',lib:'Quotes',expected:'205|102|131|26'}
+  ];
+  const wait = ms => new Promise(resolve => setTimeout(resolve,ms));
+  function assert(value,message='Aserción fallida'){if(!value)throw new Error(message);}
+  async function until(fn){const end=Date.now()+5000;while(!fn()){if(Date.now()>end)throw new Error('Tiempo de espera agotado');await wait(20);}}
+  async function test(name,fn){try{await fn();results.push({name,pass:true});}catch(error){results.push({name,pass:false,error:error.message});}const r=results.at(-1),li=document.createElement('li');li.textContent=(r.pass?'✓ ':'✗ ')+name+(r.error?' — '+r.error:'');if(!r.pass)li.className='fail';document.getElementById('test-results').append(li);}
+  function path(){return frame.contentWindow.location.pathname.split('/').pop();}
+  async function go(page){await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(new Error('No cargó '+page)),5000);frame.onload=()=>{clearTimeout(timer);frame.onload=null;resolve();};frame.src=page;});await until(()=>path()===page&&frame.contentDocument.readyState==='complete');}
+  async function arrival(action,page){action();await until(()=>path()===page&&frame.contentDocument.readyState==='complete');}
+  function nav(d,current){const links=[...d.querySelectorAll('.module-nav a')];assert(links.map(a=>a.getAttribute('href')).join('|')===pages.join('|'),'Navegación incompleta');assert(links.filter(a=>a.hasAttribute('aria-current')).length===1);assert(d.querySelector('.module-nav [aria-current]').getAttribute('href')===current);}
+  const metricValues=d=>[...d.querySelectorAll('.metric-value')].map(n=>n.textContent.replace(/[^\d,\-]/g,''));
+  function expected(d,c){const values=metricValues(d);if(c.lib==='NPS')return values[0]==='34,4'&&values[1]==='180';return values.join('|')===c.expected;}
+  function period(w,d){for(const [id,value] of [['period-start','2026-09-01'],['period-end','2026-09-17']]){const input=d.getElementById(id);if(input){input.value=value;input.dispatchEvent(new w.Event('change',{bubbles:true}));}}}
+  async function capture(w,d){let captured;const create=w.URL.createObjectURL,revoke=w.URL.revokeObjectURL,click=w.HTMLAnchorElement.prototype.click;try{w.URL.createObjectURL=blob=>{captured=blob;return 'blob:prueba-sintetica';};w.URL.revokeObjectURL=()=>{};w.HTMLAnchorElement.prototype.click=function(){};d.getElementById('export-results').click();assert(captured,'No se produjo exportación');return w.CSVLocal.read(await captured.text());}finally{w.URL.createObjectURL=create;w.URL.revokeObjectURL=revoke;w.HTMLAnchorElement.prototype.click=click;}}
+  async function mobile(){frame.style.border='0';frame.style.width='375px';await wait(50);const w=frame.contentWindow,d=frame.contentDocument;assert(w.innerWidth===375);assert(d.documentElement.scrollWidth<=375,'Desbordamiento: '+d.documentElement.scrollWidth);frame.style.width='100%';}
+  try {
+    await go('home.html');
+    await test('Inicio ofrece exactamente cuatro módulos locales',()=>{const cards=[...frame.contentDocument.querySelectorAll('.module-card')];assert(cards.length===4);assert(cards.map(n=>n.querySelector('a').getAttribute('href')).join('|')===pages.slice(1).join('|'));});
+    await test('Inicio mantiene navegación y página activa explícita',()=>nav(frame.contentDocument,'home.html'));
+    await test('Cada tarjeta tiene corte, alcance y limitación propios',()=>{for(const n of frame.contentDocument.querySelectorAll('.module-card')){assert(n.querySelector('.module-scope').textContent.length>60);assert(n.querySelector('.module-limit').textContent.length>60);}assert(frame.contentDocument.querySelector('[data-module=agenda]').textContent.includes('por separado'));});
+    await test('Inicio sintético no combina datos ni ofrece filtros globales',()=>{const d=frame.contentDocument;assert(!d.querySelector('.metric-value'));assert(!d.querySelector('input'));assert(d.getElementById('home-mode').textContent.includes('FICTICIOS'));assert(d.body.textContent.includes('no combina cantidades'));});
+    await test('Inicio se adapta a375px sin desbordamiento',mobile);
+    await test('Inicio no carga scripts ni recursos remotos',()=>{const w=frame.contentWindow,d=frame.contentDocument;assert(!d.querySelector('script'));assert(w.performance.getEntriesByType('resource').every(r=>new URL(r.name).origin===location.origin));assert(d.querySelector('meta[http-equiv="Content-Security-Policy"]').content.includes("connect-src 'none'"));});
+    for(const c of configs){
+      await go(c.page);await until(()=>frame.contentWindow[c.app]);
+      await test(c.label+': navegación consistente y entrada vacía',()=>{const d=frame.contentDocument;nav(d,c.page);assert(d.getElementById('workspace').hidden);assert(d.getElementById('export-results').disabled);});
+      await test(c.label+': ejemplo reproduce su propio control',async()=>{const d=frame.contentDocument;d.getElementById('example').click();await until(()=>expected(d,c));assert(!d.getElementById('export-results').disabled);assert(d.getElementById('selection-note').textContent.includes('2026'));});
+      await test(c.label+': importación repetida desde input reemplaza sin acumular',async()=>{const w=frame.contentWindow,d=frame.contentDocument;for(let i=0;i<2;i++){const transfer=new w.DataTransfer();transfer.items.add(new w.File([w[c.lib].exampleCSV()],'repetido-ficticio.csv',{type:'text/csv'}));d.getElementById('file').files=transfer.files;d.getElementById('file').dispatchEvent(new w.Event('change',{bubbles:true}));await until(()=>!d.getElementById('workspace').hidden);period(w,d);assert(expected(d,c));assert(d.getElementById('detail-body').children.length===3);assert(d.getElementById('file').value==='');}});
+      await test(c.label+': CSV exportado neutraliza fórmulas y conserva selección',async()=>{const w=frame.contentWindow,d=frame.contentDocument;await w[c.app].loadFile(new w.File([w[c.lib].exampleCSV().replaceAll('País ficticio A','=2+3')],'etiquetas-ficticias.csv',{type:'text/csv'}));period(w,d);const select=d.getElementById('country');select.value='=2+3';select.dispatchEvent(new w.Event('change',{bubbles:true}));assert(select.value==='=2+3');const csv=await capture(w,d);assert(!csv.errors.length&&csv.records.length===2);assert(csv.records[1].values[1]==="'=2+3",'Etiqueta de hoja de cálculo sin neutralizar');});
+      await test(c.label+': Back/Forward mantiene el módulo y evita mezclar cantidades',async()=>{let w=frame.contentWindow,d=frame.contentDocument;w[c.app].reset();d.getElementById('example').click();await until(()=>expected(d,c));await arrival(()=>d.querySelector('.module-nav a[href="home.html"]').click(),'home.html');await arrival(()=>frame.contentWindow.history.back(),c.page);w=frame.contentWindow;d=frame.contentDocument;await until(()=>w[c.app]);nav(d,c.page);assert(d.getElementById('workspace').hidden||expected(d,c));await arrival(()=>w.history.forward(),'home.html');await arrival(()=>frame.contentWindow.history.back(),c.page);nav(frame.contentDocument,c.page);});
+      await test(c.label+': reset y recarga eliminan datos de demo y metadatos',async()=>{const w=frame.contentWindow,d=frame.contentDocument;w[c.app].reset();assert(d.getElementById('workspace').hidden);assert(d.getElementById('country').options.length===0);assert(d.getElementById('export-results').disabled);if(d.getElementById('period-start'))assert(d.getElementById('period-start').value==='');await go(c.page);const fresh=frame.contentDocument;assert(fresh.getElementById('workspace').hidden);assert(!metricValues(fresh).length);assert(fresh.getElementById('country').options.length===0);nav(fresh,c.page);});
+      await test(c.label+':375px y recursos del mismo origen tras navegar',async()=>{const d=frame.contentDocument;d.getElementById('example').click();await until(()=>expected(d,c));await mobile();assert(frame.contentWindow.performance.getEntriesByType('resource').every(r=>new URL(r.name).origin===location.origin));assert([...d.querySelectorAll('script[src],link[rel=stylesheet]')].every(n=>new URL(n.src||n.href).origin===location.origin));});
+    }
+  } catch(error){await test('Preparación de integración',()=>{throw error;});}
+  const passed=results.filter(r=>r.pass).length;document.title=passed+'/'+results.length+' pruebas de integración correctas';document.getElementById('test-summary').textContent=document.title;
+})();

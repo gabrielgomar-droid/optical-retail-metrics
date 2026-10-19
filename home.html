@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Optical Retail Metrics · Inicio local</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="navigation.css">
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <header class="topbar">
+    <div class="brand">Optical Retail Metrics</div>
+    <nav class="module-nav" aria-label="Módulos">
+      <a href="home.html" aria-current="page">Inicio</a><a href="index.html">NPS</a><a href="agendamientos.html">Agendas</a><a href="ventas.html">Ventas EUR</a><a href="cotizaciones.html">Cotizaciones</a>
+    </nav>
+  </header>
+  <main id="main" class="home-main">
+    <p class="eyebrow" id="home-mode">DEMO LOCAL · EJEMPLOS COMPLETAMENTE FICTICIOS</p>
+    <h1>Cuatro módulos.<br>Cada una con su alcance.</h1>
+    <p class="home-intro">Explora agregados por país con importación y exportación CSV. Cada módulo mantiene sus fechas, cobertura y definiciones. Esta entrada no combina cantidades ni compara periodos.</p>
+    <p class="notice" id="home-privacy">Los ejemplos son sintéticos y no acreditan uso empresarial. Los archivos elegidos se procesan en memoria, sin enviarlos al servidor. Guarda datos reales y resultados fuera de esta carpeta.</p>
+    <section class="module-grid" aria-label="Elegir módulo">
+      <article class="panel module-card" data-module="nps">
+        <p class="eyebrow">RESPUESTAS · PUNTOS NPS</p><h2>NPS por país</h2>
+        <p class="module-scope">Ejemplo: 1–30 septiembre 2026. Tres países ficticios; uno con cero respuestas. El rango describe todo el agregado.</p>
+        <p class="module-limit">Se suman respuestas antes de calcular NPS. Sin serie semanal ni representatividad acreditada.</p>
+        <a class="button primary" href="index.html">Abrir NPS</a>
+      </article>
+      <article class="panel module-card" data-module="agenda">
+        <p class="eyebrow">CONTEOS · CREACIÓN FISCAL</p><h2>Agendamientos</h2>
+        <p class="module-scope">2026: semanas 1–40 y semana 41 preliminar, consultadas por separado. Tres países ficticios.</p>
+        <p class="module-limit">Correspondencia gregoriana de creación pendiente. Sin sumar cortes, tasas ni comparación entre duraciones distintas.</p>
+        <a class="button primary" href="agendamientos.html">Abrir agendamientos</a>
+      </article>
+      <article class="panel module-card" data-module="sales">
+        <p class="eyebrow">SNS EUR TY · UNIDADES VISIBLES</p><h2>Ventas EUR</h2>
+        <p class="module-scope">Ejemplo: 1–17 septiembre 2026. Dos países ficticios y un grupo sin país asignado.</p>
+        <p class="module-limit">EUR visibles a unidad; centavos y definición contable completa sin acreditar. Se conservan negativos y país ausente.</p>
+        <a class="button primary" href="ventas.html">Abrir ventas EUR</a>
+      </article>
+      <article class="panel module-card" data-module="quotes">
+        <p class="eyebrow">CUATRO CANTIDADES INDEPENDIENTES</p><h2>Cotizaciones</h2>
+        <p class="module-scope">Ejemplo: 1–17 septiembre 2026. Dos países ficticios y un grupo sin país asignado.</p>
+        <p class="module-limit">Recuperaciones ya cerradas; cotizaciones recientes aún recuperables. Fecha de atribución pendiente, sin tasa de conversión.</p>
+        <a class="button primary" href="cotizaciones.html">Abrir cotizaciones</a>
+      </article>
+    </section>
+    <section class="home-notes" aria-labelledby="how-title">
+      <h2 id="how-title">Un flujo local y explícito</h2>
+      <ol><li>Abre un módulo y explora su ejemplo ficticio o selecciona un CSV agregado autorizado.</li><li>Revisa el corte y las advertencias del módulo. Declarar fechas no filtra filas del archivo.</li><li>Filtra por país y exporta esa selección. Limpiar vacía la página; no borra archivos del disco.</li></ol>
+      <p>La navegación carga una vista independiente. Volver puede restaurar la página según el navegador; pulsa Limpiar todo para vaciarla. Recargar la demo inicia sin datos. Las copias privadas preconfiguradas vuelven a cargar su agregado al recargar.</p>
+      <p><a href="regression.html">Ejecutar regresión de interfaz</a> · <a href="README.md">Guía de uso</a> · <a href="docs/PRIVACY.md">Privacidad</a></p>
+    </section>
+  </main>
+  <footer><span>Optical Retail Metrics</span><span>Prototipo local · Sin uso, adopción o afiliación empresarial acreditados</span></footer>
+</body>
+</html>

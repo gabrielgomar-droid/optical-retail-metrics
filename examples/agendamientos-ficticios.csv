@@ -1,0 +1,7 @@
+pais,anio_fiscal,semana_desde,semana_hasta,estado,agendamientos
+País ficticio A,2026,1,40,observado,120
+País ficticio B,2026,1,40,observado,80
+País ficticio C,2026,1,40,observado,0
+País ficticio A,2026,41,41,preliminar,7
+País ficticio B,2026,41,41,preliminar,3
+País ficticio C,2026,41,41,preliminar,0
