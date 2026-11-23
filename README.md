@@ -79,6 +79,8 @@ Good first contributions include:
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a PR. Bug and feature templates are available in GitHub Issues.
 
+For structured feedback, use the [external tester thread](https://github.com/gabrielgomar-droid/optical-retail-metrics/issues/2).
+
 ## Maintainer workflow and Codex
 
 [AGENTS.md](AGENTS.md) documents the repository contract for coding agents and maintainers: privacy constraints, test commands, review expectations and files that should not contain real business data.
