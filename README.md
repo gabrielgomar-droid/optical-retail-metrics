@@ -1,54 +1,118 @@
 # Optical Retail Metrics
 
-Prototipo web local en español para **NPS, agendamientos, ventas EUR y cotizaciones por país**. Importa CSV agregados, valida su estructura, muestra gráficos y tablas y exporta la selección. Los ejemplos son completamente ficticios. No hay uso operativo, usuarios, adopción ni afiliación empresarial acreditados.
+[Español](README.es.md)
 
-## Abrir en dos pasos
+**Privacy-first, open-source analytics for retail and customer-experience teams.**  
+Optical Retail Metrics is an early-stage static toolkit for exploring aggregated NPS, appointments, sales and quote-recovery metrics locally in the browser.
 
-Requisitos: Python 3 y un navegador moderno con File API, TextDecoder y campos de fecha. No requiere npm, paquetes, cuenta ni conexión a Internet.
+The project started from optical-retail use cases, but its architecture is intentionally generic: data stays on the user's machine, examples are synthetic, and the app does not require a backend, telemetry, an account or an Internet connection.
 
-1. En la carpeta del proyecto, ejecuta:
+> Status: early-stage OSS project. Public adoption, production usage and external contributor activity are **not claimed**. The goal of this repository is to make the tool easier to test, review and improve in public.
 
-   ```sh
-   python3 serve_demo.py
-   ```
+## Why this project exists
 
-2. Abre **http://127.0.0.1:8765/home.html** y elige un módulo. Pulsa **Explorar ejemplo ficticio**.
+Retail and CX teams often need to inspect operational exports without sending sensitive data to another service. This project explores a simple model:
 
-En macOS también puedes ejecutar `bash "Abrir demo.command"` desde esta carpeta. Mantén la terminal abierta; `Ctrl+C` detiene ese servidor. Si el puerto está ocupado, el comando lo indica y conserva el proceso existente. El servidor se limita a loopback y no sirve metadatos de Git, borradores ni directorios. No abras la aplicación mediante `file://`.
+- process CSV files locally in the browser;
+- validate schemas before calculating metrics;
+- keep missing values and zeros semantically distinct;
+- avoid inventing rates when cohorts or denominators are not comparable;
+- export only the active selection;
+- use synthetic fixtures for public tests and examples.
 
-## Cuatro alcances independientes
+## Modules
 
-| Módulo | Ejemplo sintético | Límites que se mantienen visibles |
+| Module | What it shows | Important limitation |
 |---|---|---|
-| [NPS](index.html) | 180 respuestas y 34,4 puntos; septiembre 2026 | Ponderación desde conteos; cero respuestas es N/D. Sin semanas reconstruidas ni representatividad acreditada. |
-| [Agendamientos](agendamientos.html) | 200 para fiscal creación semanas 1–40 y 10 para semana 41 preliminar de 2026 | Cortes separados. Correspondencia gregoriana de creación pendiente, sin tasas ni variación entre duraciones distintas. |
-| [Ventas EUR](ventas.html) | 2025 EUR: 1200 + 800 + 25 sin país; 1–17 septiembre 2026 | EUR visibles a unidad, sin centavos ni definición contable completa acreditados. Negativos y país ausente se conservan. |
-| [Cotizaciones](cotizaciones.html) | 205 ofrecimientos, 102 cotizaciones, 131 Venta App y 26 recuperaciones cerradas; 1–17 septiembre 2026 | Cuatro cantidades independientes. Recuperaciones ya cerradas, cohorte reciente aún recuperable y fecha de atribución pendiente; sin tasa. |
+| NPS | response counts and weighted NPS | no reconstructed time series |
+| Appointments | appointment volumes by period | no attendance/conversion rate without matched cohorts |
+| Sales | EUR totals by country | no accounting interpretation beyond the declared source |
+| Quotes | offers, quotes, app sales and closed recoveries | measures are independent; no invented conversion rate |
 
-La entrada común no calcula un total entre módulos ni impone un rango global. Cada archivo conserva su alcance. Declarar fechas describe el agregado completo; no filtra días dentro del CSV ni certifica completitud.
+## Try it
 
-## Importar y exportar
+### Local demo
 
-Usa solo agregados autorizados, UTF-8 y la plantilla del módulo. El límite común es 2 MiB y 10 000 filas. Se rechaza el archivo completo si su esquema, conteos o cobertura exigida son inválidos. Las columnas extra y subtotales no se admiten. Cero, dato ausente y país sin asignar tienen significados diferentes.
+Requirements: Python 3 and a modern browser.
 
-El filtro por país determina tarjetas, gráfico, tabla y exportación. Las exportaciones distinguen total y detalle: no sumes ambos. Las etiquetas que parecen fórmulas se neutralizan para hojas de cálculo. El formato de resultados no es la plantilla de importación.
+```bash
+git clone https://github.com/gabrielgomar-droid/optical-retail-metrics.git
+cd optical-retail-metrics
+python3 serve_demo.py
+```
 
-Cada vista usa memoria independiente. Navegar no combina estados. El navegador puede restaurar una página al volver; **Limpiar todo** vacía explícitamente datos, errores, filtros y metadatos. Recargar la demo comienza sin datos. Limpiar no borra archivos o descargas del disco.
+Then open **http://127.0.0.1:8765/home.html**.
 
-Guarda datos reales y exportaciones fuera del repositorio y de la carpeta servida. La demo no incluye copias privadas ni información empresarial. Consulta [uso](docs/USAGE.md), [NPS y KPIs](docs/KPIS.md), [agendas](docs/AGENDAMIENTOS.md), [ventas](docs/VENTAS.md), [cotizaciones](docs/COTIZACIONES.md) y [privacidad](docs/PRIVACY.md).
+### Hosted demo
 
-## Verificación
+A GitHub Pages deployment workflow is included in `.github/workflows/pages.yml`. Once Pages is enabled for the repository, the intended URL is:
 
-- **176/176** pruebas de lógica en JavaScriptCore: 36 CSV, 44 NPS, 36 agendas, 30 ventas y 30 cotizaciones. Las suites también pasaron en Chrome.
-- **136/136** escenarios de interfaz Chrome: 27 NPS, 26 agendas, 25 ventas, 24 cotizaciones y 34 de integración.
-- Incluye navegación Back/Forward, reset, recarga, importaciones repetidas, exportación segura, concurrencia, errores, recursos locales y ancho de 375 px.
+**https://gabrielgomar-droid.github.io/optical-retail-metrics/home.html**
 
-Abre **http://127.0.0.1:8765/regression.html** para repetir toda la interfaz. Los fixtures son sintéticos y las descargas se capturan en memoria. [VERIFICATION.md](VERIFICATION.md) incluye comandos, suites y límites de estas comprobaciones.
+Do not treat that URL as live until GitHub Pages reports a successful deployment.
 
-## Distribución y continuidad
+## Verification
 
-Aplicación estática sin backend de datos, dependencias descargadas, telemetría ni persistencia. [Arquitectura](docs/ARCHITECTURE.md), [contribución](CONTRIBUTING.md), [roadmap](ROADMAP.md), [componentes y procedencia](THIRD_PARTY_NOTICES.md) y [licencia MIT](LICENSE).
+The repository currently documents:
 
-El código se desarrolló con asistencia de IA durante esta sesión. No se atribuye al usuario una trayectoria de mantenimiento anterior. Se distribuye el código y los fixtures sintéticos de este proyecto bajo [MIT](LICENSE). Esa licencia no se aplica a datos de negocio, reportes, marcas o materiales de terceros, que no se incluyen. El repositorio es un prototipo nuevo: no se acredita uso operativo, adopción, importancia en un ecosistema ni mantenimiento sostenido. Publicar código no garantiza selección en un programa externo.
+- **176/176** logic checks across CSV parsing, NPS, appointments, sales and quotes.
+- **136/136** browser scenarios in the recorded Chrome regression run.
+- synthetic fixtures only;
+- CSV formula-injection neutralization on export;
+- explicit size/row limits and schema rejection;
+- no backend, telemetry or persistence.
 
-Para preparar un archivo revisable después de un cambio, ejecuta `python3 tools/prepare_package.py`. Solo empaqueta la lista explícita de `package-files.txt`; consulta [revisión del paquete](docs/PACKAGE_REVIEW.md) antes de compartirlo.
+See [VERIFICATION.md](VERIFICATION.md) for the exact scope and limitations. These checks support the behavior of the prototype; they do not prove production readiness, public adoption or independent security review.
+
+## Contributing
+
+External testing is useful even if you do not write code.
+
+Good first contributions include:
+
+- report a browser compatibility issue;
+- propose a clearer generic KPI definition;
+- test a synthetic CSV edge case;
+- improve accessibility;
+- add a reproducible fixture;
+- suggest a generic retail/CX workflow that does not depend on private company data.
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a PR. Bug and feature templates are available in GitHub Issues.
+
+## Maintainer workflow and Codex
+
+[AGENTS.md](AGENTS.md) documents the repository contract for coding agents and maintainers: privacy constraints, test commands, review expectations and files that should not contain real business data.
+
+GitHub Actions runs the Node-compatible logic suites and Python syntax checks on pushes and pull requests.
+
+## Privacy and data policy
+
+This public repository must not contain:
+
+- customer or employee personal data;
+- internal company exports;
+- credentials, tokens or private URLs;
+- proprietary screenshots or brand assets;
+- real operational datasets without explicit permission and an appropriate license.
+
+Use synthetic or independently licensed data in issues and pull requests. See [docs/PRIVACY.md](docs/PRIVACY.md).
+
+## Roadmap
+
+Near-term priorities are intentionally practical:
+
+1. get external testers using the hosted demo;
+2. collect real issues instead of manufacturing activity;
+3. improve accessibility and cross-browser coverage;
+4. publish reproducible releases;
+5. generalize schemas where that adds real utility.
+
+See [ROADMAP.md](ROADMAP.md).
+
+## License
+
+MIT for the code and synthetic fixtures included in this repository. Third-party and business data are outside that license unless explicitly stated otherwise.
+
+---
+
+If you work in optical retail, retail operations, CX analytics or privacy-sensitive reporting and want to test the project, open an issue with a **synthetic reproduction**. Real-world feedback is more valuable than stars.
